@@ -32,9 +32,9 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.get('/', (req, res) => {
   Restaurant.find()
     .lean()
+    .sort({ _id: 'asc'})
     .then(restaurant => res.render('index', { restaurant }))
     .catch(error => console.log(error))
-
 })
 app.get("/restaurants/new", (req, res) => {
   res.render("new")
@@ -46,7 +46,7 @@ app.post('/restaurants', (req, res) => {
   const name_en = req.body.name_en
   const category = req.body.category
   const image = req.body.image
-  const location = req.body.location
+  const location = r`eq.body.location
   const phone = req.body.phone
   const google_map = req.body.google_map
   const rating = req.body.rating
